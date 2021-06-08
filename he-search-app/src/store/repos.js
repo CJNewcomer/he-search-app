@@ -12,7 +12,7 @@ const setRepo = ({ repo }) => ({
 });
 
 export const getRepo = (id) => async (dispatch) => {
-    const response = await fetch(`https://api.github.com/search/${id}`);
+    const response = await fetch(`/api/search/${id}`);
     if (response.ok) {
         dispatch(setRepo(response.data.repo));
         return response;
@@ -21,11 +21,13 @@ export const getRepo = (id) => async (dispatch) => {
 
 export const getRepos = (query) => async (dispatch) => {
     const response = await fetch(`https://api.github.com/search/${query}`);
-    if (response.ok) {
-        dispatch(setRepos(response.data.repos));
-        return response;
-    }
-}
+    const repos = response.data.repos;
+    const res = await fetch(`/api/search/`, {
+        method: 'POST',
+        body: JSON.stringify({ repos }),
+    });
+    dispatch(setRepos(res.data));
+};
 
 const initialState = {};
 
