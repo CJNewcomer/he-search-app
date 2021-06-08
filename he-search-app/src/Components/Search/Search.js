@@ -6,7 +6,7 @@ import { getRepo, getRepos } from '../../store/repos';
 import './Search.css';
 
 const Search = () => {
-    const [search, setSearch] = useState("");
+    const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
     const reposFromStore = useSelector((state) => Object.values(state.repo));
 
@@ -26,16 +26,16 @@ const Search = () => {
     useEffect(() => {
         setFilteredResults(
             reposFromStore.filter((repo) => 
-            repo.label.toLowerCase().includes(search.toLowerCase()) ||
-            repo.fork.toLowerCase().includes(search.toLowerCase()) ||
-            repo.filename.toLowerCase().includes(search.toLowerCase()) ||
-            repo.owner.toLowerCase().includes(search.toLowerCase()) ||
-            repo.path.toLowerCase().includes(search.toLowerCase()) ||
-            repo.language.toLowerCase().includes(search.toLowerCase()) ||
-            repo.size.toLowerCase().includes(search.toLowerCase()) ||
-            repo.extension.toLowerCase().includes(search.toLowerCase()))
+            repo.label.toLowerCase().includes(query.toLowerCase()) ||
+            repo.fork.toLowerCase().includes(query.toLowerCase()) ||
+            repo.filename.toLowerCase().includes(query.toLowerCase()) ||
+            repo.owner.toLowerCase().includes(query.toLowerCase()) ||
+            repo.path.toLowerCase().includes(query.toLowerCase()) ||
+            repo.language.toLowerCase().includes(query.toLowerCase()) ||
+            repo.size.toLowerCase().includes(query.toLowerCase()) ||
+            repo.extension.toLowerCase().includes(query.toLowerCase()))
         )
-    }, [search])
+    }, [query])
 
 if (!filteredResults) return null;
 
@@ -43,7 +43,7 @@ return (
     <>
         <div className='search__container'>
             <div className='search__input'>
-                <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search or jump to...' />
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search or jump to...' />
             </div>
         </div>
         <div className='search__results-container'>
