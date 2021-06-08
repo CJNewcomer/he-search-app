@@ -1,30 +1,31 @@
 export const SET_REPO = 'repos/SET_REPO';
 const SET_REPOS = 'repos/SET_REPOS';
 
-const setRepos = (repos) => ({
+const setRepos = (repositories) => ({
     type: SET_REPOS,
-    payload: { repos },
+    payload: { repositories },
 });
 
-const setRepo = ({ repo }) => ({
+const setRepo = ({ repository }) => ({
     type: SET_REPO,
-    payload: { repo },
+    payload: { repository },
 });
 
 export const getRepo = (id) => async (dispatch) => {
     const response = await fetch(`/api/search/${id}`);
     if (response.ok) {
-        dispatch(setRepo(response.data.repo));
+        dispatch(setRepo(response.data.repository));
         return response;
     }
 }
 
 export const getRepos = (query) => async (dispatch) => {
-    const response = await fetch(`https://api.github.com/search/${query}`);
-    const repos = response.data.repos;
-    const res = await fetch(`/api/search/`, {
+    const response = await fetch(`https://api.github.com/${query}`);
+    console.log("is this working?");
+    const repositories = response.data;
+    const res = await fetch(`/api/search/repositories`, {
         method: 'POST',
-        body: JSON.stringify({ repos }),
+        body: JSON.stringify({ repositories }),
     });
     dispatch(setRepos(res.data));
 };
@@ -32,15 +33,13 @@ export const getRepos = (query) => async (dispatch) => {
 const initialState = {};
 
 const repoReducer = (state = initialState, action) => {
-    const newState = Object.assign({}, state);
+    let newState = Object.assign({}, state);
     switch (action.type) {
         case SET_REPO:
             newState[action.payload.id] = action.payload;
             return newState;
         case SET_REPOS:
-            for (let repo of action.payload) {
-                newState[repo.id] = repo;
-            }
+            newState = { ...state};
             return newState;
         default:
             return state;

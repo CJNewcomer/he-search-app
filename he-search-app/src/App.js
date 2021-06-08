@@ -18,7 +18,7 @@ function App() {
         <Route path="/search" exact={true}>
           <Search />
         </Route>
-        <Route path="/repo/:repoId">
+        <Route path="/repository/:repositoryId">
 
         </Route>
         <Route path="*">

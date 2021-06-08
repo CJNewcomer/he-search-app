@@ -1,41 +1,38 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
-import { getRepo, getRepos } from '../../store/repos';
+import { useHistory } from 'react-router-dom';
+import { getRepos } from '../../store/repos';
 
 import './Search.css';
 
 const Search = () => {
     const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
-    const reposFromStore = useSelector((state) => Object.values(state.repo));
+    const reposFromStore = useSelector((state) => Object.values(state.repositories));
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const location = useLocation();
-    // const query = location.search.split('=')[1];
-    // const filtered = repos.filter(repo => repo.name.toLowerCase().includes(query.toLowerCase()));
-
     useEffect(() => {
-        dispatch(getRepo())
+        // dispatch(getRepo())
         dispatch(getRepos())
     }, [dispatch]);
 
 
     useEffect(() => {
         setFilteredResults(
-            reposFromStore.filter((repo) => 
-            repo.label.toLowerCase().includes(query.toLowerCase()) ||
-            repo.fork.toLowerCase().includes(query.toLowerCase()) ||
-            repo.filename.toLowerCase().includes(query.toLowerCase()) ||
-            repo.owner.toLowerCase().includes(query.toLowerCase()) ||
-            repo.path.toLowerCase().includes(query.toLowerCase()) ||
-            repo.language.toLowerCase().includes(query.toLowerCase()) ||
-            repo.size.toLowerCase().includes(query.toLowerCase()) ||
-            repo.extension.toLowerCase().includes(query.toLowerCase()))
+            reposFromStore.filter((repository) => 
+            repository.label.toLowerCase().includes(query.toLowerCase()) ||
+            repository.fork.toLowerCase().includes(query.toLowerCase()) ||
+            repository.filename.toLowerCase().includes(query.toLowerCase()) ||
+            repository.owner.toLowerCase().includes(query.toLowerCase()) ||
+            repository.path.toLowerCase().includes(query.toLowerCase()) ||
+            repository.language.toLowerCase().includes(query.toLowerCase()) ||
+            repository.size.toLowerCase().includes(query.toLowerCase()) ||
+            repository.extension.toLowerCase().includes(query.toLowerCase()))
         )
-    }, [query])
+        // eslint-disable-next-line
+    }, [query]);
 
 if (!filteredResults) return null;
 
@@ -47,8 +44,8 @@ return (
             </div>
         </div>
         <div className='search__results-container'>
-            {filteredResults.map((repo) => {
-                const { id, name, description, starredNumber, language, owner } = repo;
+            {filteredResults.map((repository) => {
+                const { id, name, description, starredNumber, language, owner } = repository;
                 return (
                     <div className='search__results' key={id}>
                         <div onClick={() => {
