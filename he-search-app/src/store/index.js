@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import repoReducer from '../store/repos';
 
 const rootReducer = combineReducers({
-
+    repos: repoReducer,
 })
 
 let enhancer;
