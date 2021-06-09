@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+
+import Search from './Components/Search/index';
 
 
 
@@ -14,9 +16,9 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/search" exact={true}>
-          
+          <Search />
         </Route>
-        <Route path="/profile/:profileId">
+        <Route path="/repository/:repositoryId">
 
         </Route>
         <Route path="*">
