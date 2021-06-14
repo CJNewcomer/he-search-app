@@ -20,7 +20,7 @@ export const getRepo = (id) => async (dispatch) => {
 }
 
 export const getRepos = () => async (dispatch) => {
-    const response = await fetch(`https://api.github.com`);
+    const response = await fetch(`https://api.github.com/search/repositories`);
     console.log("is this working?", response);
     const repos = response.data;
     if (response.ok) {
