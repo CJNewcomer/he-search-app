@@ -8,7 +8,7 @@ import './Search.css';
 const Search = () => {
     const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
-    const reposFromStore = useSelector((state) => Object.values(state.repositories));
+    const reposFromStore = useSelector((state) => Object.values(state.repos));
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,15 +21,15 @@ const Search = () => {
 
     useEffect(() => {
         setFilteredResults(
-            reposFromStore.filter((repository) => 
-            repository.label.toLowerCase().includes(query.toLowerCase()) ||
-            repository.fork.toLowerCase().includes(query.toLowerCase()) ||
-            repository.filename.toLowerCase().includes(query.toLowerCase()) ||
-            repository.owner.toLowerCase().includes(query.toLowerCase()) ||
-            repository.path.toLowerCase().includes(query.toLowerCase()) ||
-            repository.language.toLowerCase().includes(query.toLowerCase()) ||
-            repository.size.toLowerCase().includes(query.toLowerCase()) ||
-            repository.extension.toLowerCase().includes(query.toLowerCase()))
+            reposFromStore.filter((repo) => 
+            repo.label.toLowerCase().includes(query.toLowerCase()) ||
+            repo.fork.toLowerCase().includes(query.toLowerCase()) ||
+            repo.filename.toLowerCase().includes(query.toLowerCase()) ||
+            repo.owner.toLowerCase().includes(query.toLowerCase()) ||
+            repo.path.toLowerCase().includes(query.toLowerCase()) ||
+            repo.language.toLowerCase().includes(query.toLowerCase()) ||
+            repo.size.toLowerCase().includes(query.toLowerCase()) ||
+            repo.extension.toLowerCase().includes(query.toLowerCase()))
         )
         // eslint-disable-next-line
     }, [query]);
@@ -44,8 +44,8 @@ return (
             </div>
         </div>
         <div className='search__results-container'>
-            {filteredResults.map((repository) => {
-                const { id, name, description, starredNumber, language, owner } = repository;
+            {filteredResults.map((repo) => {
+                const { id, name, description, starredNumber, language, owner } = repo;
                 return (
                     <div className='search__results' key={id}>
                         <div onClick={() => {

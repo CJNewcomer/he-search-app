@@ -1,33 +1,32 @@
 export const SET_REPO = 'repos/SET_REPO';
 const SET_REPOS = 'repos/SET_REPOS';
 
-const setRepos = (repositories) => ({
+const setRepos = (repos) => ({
     type: SET_REPOS,
-    payload: { repositories },
+    payload: { repos },
 });
 
-const setRepo = ({ repository }) => ({
+const setRepo = ({ repo }) => ({
     type: SET_REPO,
-    payload: { repository },
+    payload: { repo },
 });
 
 export const getRepo = (id) => async (dispatch) => {
     const response = await fetch(`/api/search/${id}`);
     if (response.ok) {
-        dispatch(setRepo(response.data.repository));
+        dispatch(setRepo(response.data.repo));
         return response;
     }
 }
 
-export const getRepos = (query) => async (dispatch) => {
-    const response = await fetch(`https://api.github.com/${query}`);
-    console.log("is this working?");
-    const repositories = response.data;
-    const res = await fetch(`/api/search/repositories`, {
-        method: 'POST',
-        body: JSON.stringify({ repositories }),
-    });
-    dispatch(setRepos(res.data));
+export const getRepos = () => async (dispatch) => {
+    const response = await fetch(`https://api.github.com`);
+    console.log("is this working?", response);
+    const repos = response.data;
+    if (response.ok) {
+        dispatch(setRepos(repos));
+    }    
+
 };
 
 const initialState = {};
