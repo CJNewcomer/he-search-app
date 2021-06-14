@@ -19,8 +19,8 @@ export const getRepo = (id) => async (dispatch) => {
     }
 }
 
-export const getRepos = () => async (dispatch) => {
-    const response = await fetch(`https://api.github.com/search/repositories`);
+export const getRepos = (query) => async (dispatch) => {
+    const response = await fetch(`https://api.github.com/search/repositories?q=${query}`);
     console.log("is this working?", response);
     const repos = response.data;
     if (response.ok) {
