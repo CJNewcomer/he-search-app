@@ -8,7 +8,7 @@ import './Search.css';
 const Search = () => {
     const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
-    const reposFromStore = useSelector((state) => Object.values(state.repos));
+    const reposFromStore = useSelector((state) => Object.values(state.repositories));
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,15 +21,15 @@ const Search = () => {
 
     useEffect(() => {
         setFilteredResults(
-            reposFromStore.filter((repo) => 
-            repo.label.toLowerCase().includes(query.toLowerCase()) ||
-            repo.fork.toLowerCase().includes(query.toLowerCase()) ||
-            repo.filename.toLowerCase().includes(query.toLowerCase()) ||
-            repo.owner.toLowerCase().includes(query.toLowerCase()) ||
-            repo.path.toLowerCase().includes(query.toLowerCase()) ||
-            repo.language.toLowerCase().includes(query.toLowerCase()) ||
-            repo.size.toLowerCase().includes(query.toLowerCase()) ||
-            repo.extension.toLowerCase().includes(query.toLowerCase()))
+            reposFromStore.filter((repository) => 
+            repository.label.toLowerCase().includes(query.toLowerCase()) ||
+            repository.fork.toLowerCase().includes(query.toLowerCase()) ||
+            repository.filename.toLowerCase().includes(query.toLowerCase()) ||
+            repository.owner.toLowerCase().includes(query.toLowerCase()) ||
+            repository.path.toLowerCase().includes(query.toLowerCase()) ||
+            repository.language.toLowerCase().includes(query.toLowerCase()) ||
+            repository.size.toLowerCase().includes(query.toLowerCase()) ||
+            repository.extension.toLowerCase().includes(query.toLowerCase()))
         )
         // eslint-disable-next-line
     }, [query]);
@@ -39,13 +39,13 @@ if (!filteredResults) return null;
 return (
     <>
         <div className='search__container'>
-            <div className='search__input'>
-                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search or jump to...' />
-            </div>
+                <div className='search__input'>
+                    <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search or jump to...' />
+                </div>
         </div>
         <div className='search__results-container'>
-            {filteredResults.map((repo) => {
-                const { id, name, description, starredNumber, language, owner } = repo;
+            {filteredResults.map((repository) => {
+                const { id, name, description, starred, language, owner } = repository;
                 return (
                     <div className='search__results' key={id}>
                         <div onClick={() => {
@@ -55,7 +55,7 @@ return (
                                 <div className='repo__container-info'>
                                     <h3>{name}</h3>
                                     <h3>{description}</h3>
-                                    <h3>{starredNumber}</h3>
+                                    <h3>{starred}</h3>
                                     <h3>{language}</h3>
                                     <h3>{owner}</h3>
                                 </div>
