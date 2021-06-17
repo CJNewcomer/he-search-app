@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-import './Search.css';
-
 const Search = () => {
     const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
@@ -36,7 +33,7 @@ return (
                 <div className='search__input'>
                     <input type='search' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search' />
                 </div>
-                {error.length ? (<div className='search_error'>{error}</div>) : null}
+                {error.length ? (<div className='search__error'>{error}</div>) : null}
                 <select 
                     className='search__dropdown-language'
                     value={language}
@@ -67,12 +64,10 @@ return (
                             <div className='repo__container'>
                                 <div className='repo__container-info'>
                                 <NavLink to={`/${login}/${name}`}>
-                                    <h3>{name}</h3>
+                                    <h3>{login} / {name}</h3>
                                 </NavLink>
                                     <h3>{description}</h3>
-                                    <h3>{stargazers_count}</h3>
-                                    <h3>{language}</h3>
-                                    <h3>{login}</h3>
+                                    <h3>⭐️  {stargazers_count}  {language}</h3>
                                 </div>
                             </div>
                     </div>
