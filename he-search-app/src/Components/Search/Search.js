@@ -64,12 +64,10 @@ return (
                             <div className='repo__container'>
                                 <div className='repo__container-info'>
                                 <NavLink to={`/${login}/${name}`}>
-                                    <h3>{name}</h3>
+                                    <h3>{login} / {name}</h3>
                                 </NavLink>
                                     <h3>{description}</h3>
-                                    <h3>{stargazers_count}</h3>
-                                    <h3>{language}</h3>
-                                    <h3>{login}</h3>
+                                    <h3>⭐️  {stargazers_count}  {language}</h3>
                                 </div>
                             </div>
                     </div>
