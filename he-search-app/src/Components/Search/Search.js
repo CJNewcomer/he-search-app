@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-import './Search.css';
-
 const Search = () => {
     const [query, setQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
@@ -36,7 +33,7 @@ return (
                 <div className='search__input'>
                     <input type='search' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search' />
                 </div>
-                {error.length ? (<div className='search_error'>{error}</div>) : null}
+                {error.length ? (<div className='search__error'>{error}</div>) : null}
                 <select 
                     className='search__dropdown-language'
                     value={language}
