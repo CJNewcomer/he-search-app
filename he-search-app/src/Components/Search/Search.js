@@ -63,11 +63,12 @@ return (
                     <div className='search__results' key={id}>
                             <div className='repo__container'>
                                 <div className='repo__container-info'>
-                                <NavLink to={`/${login}/${name}`}>
+                                <NavLink className='repo__url' to={`/${login}/${name}`}>
                                     <h3>{login} / {name}</h3>
                                 </NavLink>
-                                    <h3>{description}</h3>
-                                    <h3>⭐️  {stargazers_count}  {language}</h3>
+                                    <h4>{language}</h4>
+                                    <h4>{description}</h4>
+                                    <h3>⭐️  {stargazers_count} </h3>
                                 </div>
                             </div>
                     </div>

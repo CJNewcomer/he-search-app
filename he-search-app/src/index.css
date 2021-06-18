@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #4c4c4c;
-    background: #f6f7f7;
+    background: no-repeat fixed;
+    background-image: linear-gradient(to bottom right, #4c4c4c, #f6f7f7);
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
@@ -22,14 +22,15 @@ body {
 .search__input > input {
     margin-right: 1.25rem;
     width: 35rem;
-    height: 2rem;
+    height: 2.5rem;
     border-radius: .2rem;
     color: rgb(24, 20, 20);
     font-weight: 600;
 }
 
 .search__error {
-
+    color: red;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .search__dropdown-language {
@@ -75,15 +76,37 @@ body {
     background-color: whitesmoke;
     margin: 2rem;
     border-radius: .2rem;
-    height: 10rem;
+    height: 100%;
     width: 100%;
 }
 
 .repo__container {
     overflow: hidden;
-    border-bottom: #4c4c4c solid .1rem;
 }
 
 .repo__container-info {
+    padding-left: 1rem;
+    color: #4c4c4c;
+}
 
+.repo__url {
+    color: #4c4c4c!important;
+    text-decoration: none;
+    text-decoration-color: 4c4c4c!important ;
+}
+
+.repos__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+    margin: auto;
+    height: 100%;
+}
+
+.repos__container-info {
+    padding-left: 1rem;
+    color: #4c4c4c;
 }
