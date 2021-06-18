@@ -94,3 +94,19 @@ body {
     text-decoration: none;
     text-decoration-color: 4c4c4c!important ;
 }
+
+.repos__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+    margin: auto;
+    height: 100%;
+}
+
+.repos__container-info {
+    padding-left: 1rem;
+    color: #4c4c4c;
+}
